@@ -6,5 +6,5 @@ hehe huhu -> ERR
 0 0 1 0 0 -> on
 0 0 0 1 0 -> on
 1 2 3 4 5 -> above
-1 2 3 -4 5 -> above
-0 -2 3 -4 5 -> below
+1 2 3 -4 5 -> on
+-1 2 3 -4 5 -> below
