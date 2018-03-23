@@ -2,3 +2,5 @@
 *.o
 *.s
 *.i
+
+*.creator.user
