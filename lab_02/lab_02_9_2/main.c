@@ -1,41 +1,52 @@
 #include <stdio.h>
 
-const float EPS = 1e-9;
+int input(float *x, float *y, float *k, float *b);
+void compare(float x, float y, float k, float b);
 
 int main(void)
 {
 	setbuf(stdout, NULL);
 
 	float x, y;
+	float k, b;
+	if (input(&x, &y, &k, &b))
+	{
+		return 1;
+	}
+
+	compare(x, y, k, b);
+	
+	return 0;
+}
+
+int input(float *x, float *y, float *k, float *b)
+{
 	printf("Input x, y: ");
-	if (scanf("%f%f", &x, &y) < 2)
+	if (scanf("%f%f", x, y) < 2)
 	{
 		printf("x and y must be numbers.\n");
 		return 1;
 	}
-
-	float a, b, c;
-	printf("Input A, B, C: ");
-	if (scanf("%f%f%f", &a, &b, &c) < 3)
+	
+	printf("Input k, b: ");
+	if (scanf("%f%f", k, b) < 2)
 	{
-		printf("A, B and C must be numbers.\n");
+		printf("k and b must be numbers.\n");
 		return 2;
 	}
+	
+	return 0;
+}
 
-	if (!a && !b)
-	{
-		printf("0x + 0y + %.1f = 0 is not a line.\n", c);
-		return 3;
-	}
-
-	float p = a*x + b*y + c;
-
+void compare(float x, float y, float k, float b)
+{
+	float yx = k*x + b;
 	printf("Point (%.1f, %.1f) is ", x, y);
-	if (p > EPS)
+	if (y > yx)
 	{
 		printf("above");
 	}
-	else if (p < -EPS)
+	else if (y < yx)
 	{
 		printf("below");
 	}
@@ -43,7 +54,5 @@ int main(void)
 	{
 		printf("on");
 	}
-	printf(" the line %.1fx + %.1fy + %.1f = 0\n", a, b, c);
-
-	return 0;
+	printf(" the line y = %.1fx%+.1f\n", k, b);
 }
