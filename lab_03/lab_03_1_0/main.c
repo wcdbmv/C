@@ -20,16 +20,19 @@ int process(FILE *istream)
 	int error = fscanf(istream, "%d", &prev);
 	if (error == EOF)
 	{
+		fprintf(stderr, "Empty file.\n");
 		return NO_INPUT;
 	}
 	if (!error)
 	{
+		fprintf(stderr, "Invalid input.\n");
 		return INVALID_INPUT;
 	}
 	while ((error = fscanf(istream, "%d", &curr)) != EOF)
 	{
 		if (!error)
 		{
+			fprintf(stderr, "Invalid input.\n");
 			return INVALID_INPUT;
 		}
 		if (prev < 0 && curr > 0 && curr > max_pos_after_neg)
@@ -40,6 +43,7 @@ int process(FILE *istream)
 	}
 	if (!max_pos_after_neg)
 	{
+		fprintf(stderr, "No answer.\n");
 		return NO_POS_AFTER_NEG;
 	}
 	printf("%d\n", max_pos_after_neg);
