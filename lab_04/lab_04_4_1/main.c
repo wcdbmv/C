@@ -4,7 +4,7 @@
 
 int input(int array[], size_t N, size_t *length);
 void insertion_sort(int array[], size_t length);
-void print_integer_array(int array[], size_t length);
+void print_integer_array(const int array[], size_t length);
 
 int main(void)
 {
@@ -72,7 +72,7 @@ void insertion_sort(int array[], size_t length)
 	}
 }
 
-void print_integer_array(int array[], size_t length)
+void print_integer_array(const int array[], size_t length)
 {
 	for (int i = 0; i != length; ++i)
 	{

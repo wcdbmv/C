@@ -3,7 +3,7 @@
 #include <stddef.h>
 
 int input(int array[], size_t N, size_t *size);
-int odd_product(int array[], size_t size);
+int odd_product(const int array[], size_t size);
 
 int main(void)
 {
@@ -53,7 +53,7 @@ int input(int array[], size_t N, size_t *size)
 	return 0;
 }
 
-int odd_product(int array[], size_t size)
+int odd_product(const int array[], size_t size)
 {
 	int res = 1;
 	for (ptrdiff_t i = 0; i != size; ++i)

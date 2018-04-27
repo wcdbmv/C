@@ -3,9 +3,9 @@
 #include <stddef.h>
 
 int input(int array[], size_t N, size_t *length);
-void copy_primes(int a[], size_t len_a, int primes[], size_t *len_p);
+void copy_primes(const int a[], size_t len_a, int primes[], size_t *len_p);
 int is_prime(int n);
-void print_integer_array(int array[], size_t length);
+void print_integer_array(const int array[], size_t length);
 
 int main(void)
 {
@@ -60,7 +60,7 @@ int input(int array[], size_t N, size_t *length)
 	return 0;
 }
 
-void copy_primes(int a[], size_t len_a, int primes[], size_t* len_p)
+void copy_primes(const int a[], size_t len_a, int primes[], size_t* len_p)
 {
 	*len_p = 0;
 	for (int i = 0; i != len_a; ++i)
@@ -88,7 +88,7 @@ int is_prime(int n)
 	return 1;
 }
 
-void print_integer_array(int array[], size_t length)
+void print_integer_array(const int array[], size_t length)
 {
 	for (int i = 0; i != length; ++i)
 	{

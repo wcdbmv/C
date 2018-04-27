@@ -5,7 +5,7 @@
 int input(int array[], size_t N, size_t *length);
 void insert_fib(int array[], size_t *length);
 void insert(int array[], size_t *length, size_t position, int value);
-void print_integer_array(int array[], size_t length);
+void print_integer_array(const int array[], size_t length);
 
 int main(void)
 {
@@ -85,7 +85,7 @@ void insert(int array[], size_t *length, size_t position, int value)
 	++*length;
 }
 
-void print_integer_array(int array[], size_t length)
+void print_integer_array(const int array[], size_t length)
 {
 	for (int i = 0; i != length; ++i)
 	{
