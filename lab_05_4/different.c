@@ -8,10 +8,9 @@
 #define EMPTY_FILE -3
 #define INVALID_FILE_INPUT -4
 
-int check_valid(FILE *file);
 void my_perror(int rc);
-int overflowed(FILE *file);
-void read_array(FILE *file, int *begin_a, int **end_a);
+int read_array(FILE *file, int *a, int **end_a);
+int check_overflow(FILE *file);
 int count_different(int *begin_a, int *end_a);
 
 int main(int argc, char **argv)
@@ -26,21 +25,15 @@ int main(int argc, char **argv)
 	}
 
 	const char *file_name = *(argv + 1);
+	int a[N], *end_a = NULL;
 	FILE *file = fopen(file_name, "r");
 	if (file != NULL)
 	{
 		int rc;
-		if ((rc = check_valid(file)) == SUCCESS)
+		if ((rc = read_array(file, a, &end_a)) == SUCCESS)
 		{
-			rewind(file);
-			if (overflowed(file))
-			{
-				printf("Note: There are more then %d numbers in the file.\n", N);
-			}
-			rewind(file);
-			int a[N], *end_a = NULL;
-			read_array(file, a, &end_a);
-			printf("different: %d\n", count_different(a, end_a));
+			int different = count_different(a, end_a);
+			printf("different: %d\n", different);
 		}
 		else
 		{
@@ -56,30 +49,6 @@ int main(int argc, char **argv)
 	}
 
 	return SUCCESS;
-}
-
-int check_valid(FILE *file)
-{
-	int i;
-	int rc;
-	if ((rc = fscanf(file, "%d", &i)) == 1)
-	{
-		while ((rc = fscanf(file, "%d", &i)) == 1)
-			;
-		if (rc == EOF)
-		{
-			return SUCCESS;
-		}
-		return INVALID_FILE_INPUT;
-	}
-	else if (rc == EOF)
-	{
-		return EMPTY_FILE;
-	}
-	else
-	{
-		return INVALID_FILE_INPUT;
-	}
 }
 
 void my_perror(int rc)
@@ -98,29 +67,46 @@ void my_perror(int rc)
 	}
 }
 
-int overflowed(FILE *file)
+int read_array(FILE *file, int *a, int **end_a)
 {
-	int i;
-	int count;
-	while (fscanf(file, "%d", &i) != EOF)
-	{
-		++count;
-	}
-	return count > N ? 1 : 0;
-}
-
-void read_array(FILE *file, int *begin_a, int **end_a)
-{
-	int *pa = begin_a;
+	int rc;
 	for (int i = 0; i != N; ++i)
 	{
-		if (fscanf(file, "%d", pa++) == EOF)
+		if ((rc = fscanf(file, "%d", a++)) == EOF)
 		{
-			--pa;
-			break;
+			if (i)
+			{
+				*end_a = --a;
+				return SUCCESS;
+			}
+			return EMPTY_FILE;
+		}
+		if (!rc)
+		{
+			return INVALID_FILE_INPUT;
 		}
 	}
-	*end_a = pa;
+	*end_a = a;
+	rc = check_overflow(file);
+	return rc;
+}
+
+int check_overflow(FILE *file)
+{
+	int tmp, rc, i = 0;
+	while ((rc = fscanf(file, "%d", &tmp)) == 1)
+	{
+		++i;
+	}
+	if (!rc)
+	{
+		return i ? INVALID_FILE_INPUT : SUCCESS;
+	}
+	if (i)
+	{
+		fprintf(stderr, "Note: There are more then %d numbers in the file.\n", N);
+	}
+	return SUCCESS;
 }
 
 int count_different(int *begin_a, int *end_a)
