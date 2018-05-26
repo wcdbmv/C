@@ -22,27 +22,6 @@ void find_indices_min_max(int *a, int n, int *i_min, int *i_max)
 	}
 }
 
-int pop(int *a, int *n, int i)
-{
-	int popped = a[i];
-	for (int j = i; j < *n - 1; ++j)
-	{
-		a[j] = a[j + 1];
-	}
-	--*n;
-	return popped;
-}
-
-void insert(int *a, int *n, int i, int val)
-{
-	for (int j = *n; j > i; --j)
-	{
-		a[j] = a[j - 1];
-	}
-	a[i] = val;
-	++*n;
-}
-
 void insert_max_before_min(int *a, int n, int i_min, int i_max)
 {
 	if (i_min == i_max)
@@ -50,8 +29,24 @@ void insert_max_before_min(int *a, int n, int i_min, int i_max)
 		return;
 	}
 	
-	int max = pop(a, &n, i_max);
-	insert(a, &n, i_min, max);
+	int max = a[i_max];
+	
+	if (i_min < i_max)
+	{
+		for (int i = i_max; i > i_min; --i)
+		{
+			a[i] = a[i - 1];
+		}
+		a[i_min] = max;
+	}
+	else
+	{
+		for (int i = i_max; i < i_min - 1; ++i)
+		{
+			a[i] = a[i + 1];
+		}
+		a[i_min - 1] = max;
+	}
 }
 
 void fprintf_array(FILE *file, int *a, int n)
