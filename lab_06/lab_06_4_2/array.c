@@ -34,7 +34,7 @@ int check_overflow(FILE *file)
 	}
 	if (!rc)
 	{
-		return i ? INVALID_FILE_INPUT : SUCCESS;
+		return INVALID_FILE_INPUT;
 	}
 	if (i)
 	{

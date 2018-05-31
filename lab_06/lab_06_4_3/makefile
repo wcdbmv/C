@@ -10,7 +10,10 @@ ifeq ($(mode), release)
 	CFLAGS += -DNDEBUG -g0
 endif
 
-%.exe: $(OBJS) %.o
+different.exe: $(OBJS) different.o
+	$(CC) -o $@ $^
+
+test.exe: $(OBJS) test.o
 	$(CC) -o $@ $^
 
 %.o: %.c *.h
