@@ -1,6 +1,6 @@
 CC := gcc
 CFLAGS := -Wall -Werror -std=c99
-OBJS := sort.o array_io.o error.o
+OBJS := filter.o sort.o array_io.o comparator.o error.o
 
 ifeq ($(mode), debug)
 	CFLAGS += -g3
@@ -13,7 +13,7 @@ endif
 app.exe: $(OBJS) main.o
 	$(CC) -o $@ $^
 
-test.exe: sort.o test.o
+test.exe: sort.o filter.o comparator.o test.o
 	$(CC) -o $@ $^
 
 %.o: %.c *.h

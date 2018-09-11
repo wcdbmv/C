@@ -1,8 +1,11 @@
 #include <string.h>
 #include <stdbool.h>
 #include "array_io.h"
+#include "filter.h"
 #include "sort.h"
+#include "comparator.h"
 #include "error.h"
+
 
 int main(int argc, char *argv[])
 {

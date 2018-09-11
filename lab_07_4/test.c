@@ -1,35 +1,7 @@
 #include <string.h>
+#include "filter.h"
 #include "sort.h"
-
-void test_compare_int_less(void)
-{
-	const int a = -10, b = 10;
-	const void *pa = &a, *pb = &b;
-
-	int rc = compare_int(pa, pb);
-
-	printf("test_compare_int_less: %s\n", (rc < 0 ? "passed" : "failed"));
-}
-
-void test_compare_int_equal(void)
-{
-	const int a = 0, b = 0;
-	const void *pa = &a, *pb = &b;
-
-	int rc = compare_int(pa, pb);
-
-	printf("test_compare_int_equal: %s\n", (!rc ? "passed" : "failed"));
-}
-
-void test_compare_int_more(void)
-{
-	const int a = 10, b = -10;
-	const void *pa = &a, *pb = &b;
-
-	int rc = compare_int(pa, pb);
-
-	printf("test_compare_int_more: %s\n", (rc > 0 ? "passed" : "failed"));
-}
+#include "comparator.h"
 
 void test_my_sort_random(void)
 {
@@ -114,10 +86,6 @@ int main(void)
 {
 	setbuf(stdout, NULL);
 	setbuf(stderr, NULL);
-
-	test_compare_int_less();
-	test_compare_int_equal();
-	test_compare_int_more();
 
 	test_my_sort_random();
 	test_my_sort_sorted();
