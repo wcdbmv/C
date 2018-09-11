@@ -1,0 +1,2 @@
+-f: stderr: Input file has invalid syntax
++f: stderr: Input file has invalid syntax

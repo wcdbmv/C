@@ -1,0 +1,2 @@
+-f: output_file: 0 0 0 0 0 0 0
++f: stderr: Array is empty after filtration
