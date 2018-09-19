@@ -1,0 +1,14 @@
+#ifndef __ERRCODES_H__
+#define __ERRCODES_H__
+
+#define SUCCESS 0
+#define WRONG_USAGE -1
+#define SAME_FILENAMES -2
+#define CANT_OPEN_INPUT_FILE -3
+#define CANT_OPEN_OUTPUT_FILE -4
+#define FAILED_MALLOC -5
+#define EMPTY_INPUT_FILE -6
+#define EMPTY_FILTERED_ARRAY -7
+#define INVALID_INPUT_FILE_SYNTAX -8
+
+#endif // __ERRCODES_H__
