@@ -46,4 +46,5 @@ void write_array(FILE *file, int *pb, int *pe)
 	{
 		fprintf(file, "%d ", *pi);
 	}
+	fprintf(file, "\n");
 }
