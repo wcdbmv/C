@@ -101,5 +101,5 @@ int main(int argc, char *argv[])
 
 	fin:
 		my_perror(rc);
-		return rc;
+	return rc;
 }

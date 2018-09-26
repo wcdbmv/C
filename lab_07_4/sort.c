@@ -9,7 +9,7 @@ void my_sort(void *base, size_t nmemb, size_t size, compare_t compar)
 		char *pi = base;
 		while (pe - pi > 0)
 		{
-			if ((*compar)(pi, pi + size) > 0)
+			if (compar(pi, pi + size) > 0)
 			{
 				swap(pi, pi + size, size);
 			}
