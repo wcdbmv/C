@@ -1,6 +1,6 @@
 #include "sort.h"
 
-void my_sort(void *base, size_t nmemb, size_t size, compare_t compar)
+void mysort(void *base, size_t nmemb, size_t size, compare_t compar)
 {
 	char *pi = base;
 	char *pe = pi + (nmemb - 1) * size;

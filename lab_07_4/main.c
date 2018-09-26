@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 		size = rc;
 	}
 
-	my_sort(pb, pe - pb, sizeof (int), compare_int);
+	mysort(pb, pe - pb, sizeof (int), compare_int);
 	write_array(output_file, pb, pe);
 	free(pb);
 

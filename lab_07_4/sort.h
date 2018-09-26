@@ -7,7 +7,7 @@
 
 typedef int (*compare_t)(const void *, const void *);
 
-void my_sort(void *base, size_t nmemb, size_t size, compare_t compar);
+void mysort(void *base, size_t nmemb, size_t size, compare_t compar);
 void swap(void *a, void *b, size_t size);
 
 #endif // __SORT_H__
