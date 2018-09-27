@@ -6,7 +6,6 @@
 #include "comparator.h"
 #include "error.h"
 
-
 int main(int argc, char *argv[])
 {
 	setbuf(stdout, NULL);
@@ -88,19 +87,19 @@ int main(int argc, char *argv[])
 		size = rc;
 	}
 
-	my_sort(pb, pe - pb, sizeof (int), compare_int);
+	mysort(pb, pe - pb, sizeof (int), compare_int);
 	write_array(output_file, pb, pe);
 	free(pb);
 
 	rc = SUCCESS;
 
-close_output:
-	fclose(output_file);
+	close_output:
+		fclose(output_file);
 
-close_input:
-	fclose(input_file);
+	close_input:
+		fclose(input_file);
 
-fin:
-	my_perror(rc);
+	fin:
+		my_perror(rc);
 	return rc;
 }

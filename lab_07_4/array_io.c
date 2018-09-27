@@ -18,7 +18,7 @@ int count_array_size(FILE *file)
 	{
 		return EMPTY_INPUT_FILE;
 	}
-	
+
 	return size;
 }
 
@@ -46,5 +46,5 @@ void write_array(FILE *file, int *pb, int *pe)
 	{
 		fprintf(file, "%d ", *pi);
 	}
-	fprintf(file, "\b\n");
+	fprintf(file, "\n");
 }

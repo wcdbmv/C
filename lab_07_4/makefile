@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -Wall -Werror -std=c99
+CFLAGS := -Wall -Werror -std=c99 -pedantic
 OBJS := filter.o sort.o array_io.o comparator.o error.o
 
 ifeq ($(mode), debug)
