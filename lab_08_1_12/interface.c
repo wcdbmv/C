@@ -57,7 +57,7 @@ int open_files(int argc, char *argv[], FILE **mtr_1, FILE **mtr_2, FILE **res)
 
 	if (argc == 5)
 	{
-		if(!(*mtr_2 = fopen(*++iargv, "r")))
+		if (!(*mtr_2 = fopen(*++iargv, "r")))
 		{
 			perror(*iargv);
 			return OPEN_FILE_ERROR;
@@ -137,7 +137,10 @@ int do_action(action_t action, FILE *mtr_1, FILE *mtr_2, FILE *res)
 	free_matrix(&c);
 
 	free_b:
-		if (action != solve) free_matrix(&b);
+	if (action != solve)
+	{
+		free_matrix(&b);
+	}
 
 	free_a:
 		free_matrix(&a);
