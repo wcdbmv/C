@@ -151,7 +151,7 @@ int multiply_matrices(const matrix_t *a, const matrix_t *b, matrix_t *c)
 
 int copy_matrix(const matrix_t *from, matrix_t *to)
 {
-	assert (from->height && from->width);
+	assert(from->height && from->width);
 
 	int rc;
 	if ((rc = create_matrix(to, from->height, from->width)) != SUCCESS)
