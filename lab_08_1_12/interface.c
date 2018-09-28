@@ -78,16 +78,19 @@ void close_files(FILE **mtr_1, FILE **mtr_2, FILE **res)
 	if (*mtr_1)
 	{
 		fclose(*mtr_1);
+		*mtr_1 = NULL;
 	}
 
 	if (*mtr_2)
 	{
 		fclose(*mtr_2);
+		*mtr_2 = NULL;
 	}
 
 	if (*res)
 	{
 		fclose(*res);
+		*res = NULL;
 	}
 }
 

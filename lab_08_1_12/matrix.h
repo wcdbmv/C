@@ -30,7 +30,7 @@ int add_matrices(const matrix_t *a, const matrix_t *b, matrix_t *c);
 int multiply_matrices(const matrix_t *a, const matrix_t *b, matrix_t *c);
 int solve_matrix(const matrix_t *a, matrix_t *x);
 
-void copy_matrix(const matrix_t *from, matrix_t *to);
+int copy_matrix(const matrix_t *from, matrix_t *to);
 void swap_rows(matrix_t *matrix, size_t m, size_t n);
 size_t find_max_in_col(const matrix_t *matrix, size_t col);
 

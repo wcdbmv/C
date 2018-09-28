@@ -90,7 +90,11 @@ int add_matrices(const matrix_t *a, const matrix_t *b, matrix_t *c)
 		return MATRICES_SIZES_ERROR;
 	}
 
-	create_matrix(c, a->height, a->width);
+	int rc;
+	if ((rc = create_matrix(c, a->height, a->width)) != SUCCESS)
+	{
+		return rc;
+	}
 
 	for (size_t i = 0; i != c->height; ++i)
 	{
@@ -117,7 +121,11 @@ int multiply_matrices(const matrix_t *a, const matrix_t *b, matrix_t *c)
 		return MATRICES_SIZES_ERROR;
 	}
 
-	create_matrix(c, a->height, b->width);
+	int rc;
+	if ((rc = create_matrix(c, a->height, b->width)) != SUCCESS)
+	{
+		return rc;
+	}
 
 	for (size_t i = 0; i != c->height; ++i)
 	{
@@ -141,11 +149,15 @@ int multiply_matrices(const matrix_t *a, const matrix_t *b, matrix_t *c)
 	return SUCCESS;
 }
 
-void copy_matrix(const matrix_t *from, matrix_t *to)
+int copy_matrix(const matrix_t *from, matrix_t *to)
 {
 	assert (from->height && from->width);
 
-	create_matrix(to, from->height, from->width);
+	int rc;
+	if ((rc = create_matrix(to, from->height, from->width)) != SUCCESS)
+	{
+		return rc;
+	}
 
 	for (size_t i = 0; i != to->height; ++i)
 	{
@@ -156,6 +168,8 @@ void copy_matrix(const matrix_t *from, matrix_t *to)
 	}
 
 	to->nonzeros = from->nonzeros;
+
+	return SUCCESS;
 }
 
 void swap_rows(matrix_t *matrix, size_t i, size_t j)
@@ -225,8 +239,12 @@ int solve_matrix(const matrix_t *a, matrix_t *x)
 
 	size_t n = a->height;
 
+	int rc;
 	matrix_t g;
-	copy_matrix(a, &g);
+	if ((rc = copy_matrix(a, &g)) != SUCCESS)
+	{
+		return rc;
+	}
 
 	for (size_t k = 0; k != n; ++k)
 	{
@@ -241,7 +259,11 @@ int solve_matrix(const matrix_t *a, matrix_t *x)
 		}
 	}
 
-	create_matrix(x, n, 1);
+	if ((rc = create_matrix(x, n, 1)) != SUCCESS)
+	{
+		free_matrix(&g);
+		return rc;
+	}
 	for (int i = n - 1; i >= 0; --i)
 	{
 		x->data[i][0] = g.data[i][n] / g.data[i][i];
@@ -252,7 +274,6 @@ int solve_matrix(const matrix_t *a, matrix_t *x)
 	}
 
 	free_matrix(&g);
-
 	return SUCCESS;
 }
 
