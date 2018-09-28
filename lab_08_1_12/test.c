@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include "matrix.h"
 
-void test_add_matrices_positive(void)
+void test_add_matrices_pos(void)
 {
 	matrix_t a, b, c;
 	create_matrix(&a, 2, 2);
@@ -18,25 +18,25 @@ void test_add_matrices_positive(void)
 	bool cond1 = c.data[0][0] == 4 && !c.data[0][1];
 	bool cond2 = !c.data[1][0] && c.data[1][1] == 14;
 	bool cond = rc == SUCCESS && cond1 && cond2;
-	printf("test_add_matrices_positive: %s\n", cond ? "passed" : "failed");
+	printf("test_add_matrices_pos: %s\n", cond ? "passed" : "failed");
 	free_matrix(&a);
 	free_matrix(&b);
 	free_matrix(&c);
 }
 
-void test_add_matrices_negative(void)
+void test_add_matrices_neg(void)
 {
 	matrix_t a, b, c;
 	create_matrix(&a, 2, 3);
 	create_matrix(&b, 3, 2);
 	int rc = add_matrices(&a, &b, &c);
 	bool cond = rc == MATRICES_SIZES_ERROR;
-	printf("test_add_matrices_negative: %s\n", cond ? "passed" : "failed");
+	printf("test_add_matrices_neg: %s\n", cond ? "passed" : "failed");
 	free_matrix(&a);
 	free_matrix(&b);
 }
 
-void test_multiply_matrices_positive(void)
+void test_multiply_matrices_pos(void)
 {
 	matrix_t a, b, c;
 	create_matrix(&a, 2, 2);
@@ -53,20 +53,20 @@ void test_multiply_matrices_positive(void)
 	bool cond1 = c.data[0][0] == 5 && c.data[0][1] == -6;
 	bool cond2 = c.data[1][0] == 9 && c.data[1][1] == -10;
 	bool cond = rc == SUCCESS && cond1 && cond2;
-	printf("test_multiply_matrices_positive: %s\n", cond ? "passed" : "failed");
+	printf("test_multiply_matrices_pos: %s\n", cond ? "passed" : "failed");
 	free_matrix(&a);
 	free_matrix(&b);
 	free_matrix(&c);
 }
 
-void test_multiply_matrices_negative(void)
+void test_multiply_matrices_neg(void)
 {
 	matrix_t a, b, c;
 	create_matrix(&a, 2, 3);
 	create_matrix(&b, 2, 3);
 	int rc = add_matrices(&a, &b, &c);
 	bool cond = rc == MATRICES_SIZES_ERROR;
-	printf("test_multiply_matrices_negative: %s\n", cond ? "passed" : "failed");
+	printf("test_multiply_matrices_neg: %s\n", cond ? "passed" : "failed");
 	free_matrix(&a);
 	free_matrix(&b);
 }
@@ -87,7 +87,7 @@ void test_copy_swap(void)
 	free_matrix(&b);
 }
 
-void test_solve_matrix_positive(void)
+void test_solve_matrix_pos(void)
 {
 	matrix_t a, x;
 	create_matrix(&a, 2, 3);
@@ -99,7 +99,7 @@ void test_solve_matrix_positive(void)
 	a.data[1][2] = 5;
 	int rc = solve_matrix(&a, &x);
 	bool cond = rc == SUCCESS && x.data[0][0] == -1 && x.data[1][0] == 2;
-	printf("test_solve_matrix_positive: %s\n", cond ? "passed" : "failed");
+	printf("test_solve_matrix_pos: %s\n", cond ? "passed" : "failed");
 	free_matrix(&a);
 	free_matrix(&x);
 }
@@ -121,7 +121,7 @@ void test_solve_matrix_zeros(void)
 	free_matrix(&x);
 }
 
-void test_solve_matrix_negative(void)
+void test_solve_matrix_neg(void)
 {
 	matrix_t a, x;
 	create_matrix(&a, 2, 3);
@@ -133,21 +133,21 @@ void test_solve_matrix_negative(void)
 	a.data[1][2] = -4;
 	int rc = solve_matrix(&a, &x);
 	bool cond = rc == INCOMPATIBLE_SLAE_ERROR;
-	printf("test_solve_matrix_negative: %s\n", cond ? "passed" : "failed");
+	printf("test_solve_matrix_neg: %s\n", cond ? "passed" : "failed");
 	free_matrix(&a);
 }
 
 int main(void)
 {
-	test_add_matrices_positive();
-	test_add_matrices_negative();
+	test_add_matrices_pos();
+	test_add_matrices_neg();
 
-	test_multiply_matrices_positive();
-	test_multiply_matrices_negative();
+	test_multiply_matrices_pos();
+	test_multiply_matrices_neg();
 
 	test_copy_swap();
 
-	test_solve_matrix_positive();
+	test_solve_matrix_pos();
 	test_solve_matrix_zeros();
-	test_solve_matrix_negative();
+	test_solve_matrix_neg();
 }
