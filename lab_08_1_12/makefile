@@ -12,7 +12,7 @@ endif
 app.exe: $(OBJS) main.o
 	gcc $(LFLAGS) -o $@ $^
 
-test.exe: $(OBJS) test.o
+test.exe: matrix.o test.o
 	gcc $(LFLAGS) -o $@ $^
 
 %.o: %.c %.h
