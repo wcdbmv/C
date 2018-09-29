@@ -1,7 +1,7 @@
 CFLAGS = -std=c99 -Wall -Werror -pedantic
 LFLAGS = -s -pipe
+
 OBJS = action.o interface.o info.o matrix.o
-mode = release
 
 ifeq ($(mode), debug)
 	CFLAGS += -g3

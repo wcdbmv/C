@@ -175,6 +175,7 @@ int copy_matrix(const matrix_t *from, matrix_t *to)
 void swap_rows(matrix_t *matrix, size_t i, size_t j)
 {
 	assert(matrix->height && matrix->width);
+	assert(i < matrix->height && j < matrix->height);
 
 	if (i == j)
 	{

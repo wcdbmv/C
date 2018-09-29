@@ -3,9 +3,19 @@
 
 void test_add_matrices_pos(void)
 {
+	int rc;
 	matrix_t a, b, c;
-	create_matrix(&a, 2, 2);
-	create_matrix(&b, 2, 2);
+	if ((rc = create_matrix(&a, 2, 2)) != SUCCESS)
+	{
+		fprintf(stderr, "test_add_matrices_pos: catch error");
+		return;
+	}
+	if ((rc = create_matrix(&b, 2, 2)) != SUCCESS)
+	{
+		free_matrix(&a);
+		fprintf(stderr, "test_add_matrices_pos: catch error");
+		return;
+	}
 	a.data[0][0] = 2;
 	a.data[0][1] = 3;
 	a.data[1][0] = 5;
@@ -14,33 +24,74 @@ void test_add_matrices_pos(void)
 	b.data[0][1] = -3;
 	b.data[1][0] = -5;
 	b.data[1][1] = 7;
-	int rc = add_matrices(&a, &b, &c);
-	bool cond1 = c.data[0][0] == 4 && !c.data[0][1];
-	bool cond2 = !c.data[1][0] && c.data[1][1] == 14;
-	bool cond = rc == SUCCESS && cond1 && cond2;
-	printf("test_add_matrices_pos: %s\n", cond ? "passed" : "failed");
+	rc = add_matrices(&a, &b, &c);
 	free_matrix(&a);
 	free_matrix(&b);
-	free_matrix(&c);
+	if (rc == FAILED_MALLOC_ERROR)
+	{
+		fprintf(stderr, "test_add_matrices_pos: catch error\n");
+		return;
+	}
+	bool cond;
+	if (rc == SUCCESS)
+	{
+		bool cond1 = c.data[0][0] == 4 && !c.data[0][1];
+		bool cond2 = !c.data[1][0] && c.data[1][1] == 14;
+		cond = cond1 && cond2;
+		free_matrix(&c);
+	}
+	else
+		cond = false;
+	printf("test_add_matrices_pos: %s\n", cond ? "passed" : "failed");
 }
 
 void test_add_matrices_neg(void)
 {
+	int rc;
 	matrix_t a, b, c;
-	create_matrix(&a, 2, 3);
-	create_matrix(&b, 3, 2);
-	int rc = add_matrices(&a, &b, &c);
-	bool cond = rc == MATRICES_SIZES_ERROR;
-	printf("test_add_matrices_neg: %s\n", cond ? "passed" : "failed");
+	if ((rc = create_matrix(&a, 2, 3)) != SUCCESS)
+	{
+		fprintf(stderr, "test_add_matrices_neg: catch error\n");
+		return;
+	}
+	if ((rc = create_matrix(&b, 3, 2)) != SUCCESS)
+	{
+		free_matrix(&a);
+		fprintf(stderr, "test_add_matrices_neg: catch error\n");
+		return;
+	}
+	rc = add_matrices(&a, &b, &c);
 	free_matrix(&a);
 	free_matrix(&b);
+	bool cond;
+	if (rc == MATRICES_SIZES_ERROR)
+	{
+		cond = true;
+	}
+	else
+	{
+		cond = false;
+		if (rc == SUCCESS)
+			free_matrix(&c);
+	}
+	printf("test_add_matrices_neg: %s\n", cond ? "passed" : "failed");
 }
 
 void test_multiply_matrices_pos(void)
 {
+	int rc;
 	matrix_t a, b, c;
-	create_matrix(&a, 2, 2);
-	create_matrix(&b, 2, 2);
+	if ((rc = create_matrix(&a, 2, 2)) != SUCCESS)
+	{
+		fprintf(stderr, "test_multiply_matrices_pos: catch error\n");
+		return;
+	}
+	if ((rc = create_matrix(&b, 2, 2)) != SUCCESS)
+	{
+		free_matrix(&a);
+		fprintf(stderr, "test_multiply_matrices_pos: catch error\n");
+		return;
+	}
 	a.data[0][0] = 1;
 	a.data[0][1] = 2;
 	a.data[1][0] = 3;
@@ -49,42 +100,57 @@ void test_multiply_matrices_pos(void)
 	b.data[0][1] = 2;
 	b.data[1][0] = 3;
 	b.data[1][1] = -4;
-	int rc = multiply_matrices(&a, &b, &c);
-	bool cond1 = c.data[0][0] == 5 && c.data[0][1] == -6;
-	bool cond2 = c.data[1][0] == 9 && c.data[1][1] == -10;
-	bool cond = rc == SUCCESS && cond1 && cond2;
-	printf("test_multiply_matrices_pos: %s\n", cond ? "passed" : "failed");
+	rc = multiply_matrices(&a, &b, &c);
 	free_matrix(&a);
 	free_matrix(&b);
-	free_matrix(&c);
+	if (rc == FAILED_MALLOC_ERROR)
+	{
+		fprintf(stderr, "test_multiply_matrices_pos: catch error\n");
+		return;
+	}
+	bool cond;
+	if (rc == SUCCESS)
+	{
+		bool cond1 = c.data[0][0] == 5 && c.data[0][1] == -6;
+		bool cond2 = c.data[1][0] == 9 && c.data[1][1] == -10;
+		cond = cond1 && cond2;
+		free_matrix(&c);
+	}
+	else
+		cond = false;
+	printf("test_multiply_matrices_pos: %s\n", cond ? "passed" : "failed");
 }
 
 void test_multiply_matrices_neg(void)
 {
+	int rc;
 	matrix_t a, b, c;
-	create_matrix(&a, 2, 3);
-	create_matrix(&b, 2, 3);
-	int rc = add_matrices(&a, &b, &c);
-	bool cond = rc == MATRICES_SIZES_ERROR;
+	if ((rc = create_matrix(&a, 2, 3)) != SUCCESS)
+	{
+		fprintf(stderr, "test_multiply_matrices_neg: catch error\n");
+		return;
+	}
+	if ((rc = create_matrix(&b, 2, 3)) != SUCCESS)
+	{
+		free_matrix(&a);
+		fprintf(stderr, "test_multiply_matrices_neg: catch error\n");
+		return;
+	}
+	rc = multiply_matrices(&a, &b, &c);
+	free_matrix(&a);
+	free_matrix(&b);
+	bool cond;
+	if (rc == MATRICES_SIZES_ERROR)
+	{
+		cond = true;
+	}
+	else
+	{
+		cond = false;
+		if (rc == SUCCESS)
+			free_matrix(&c);
+	}
 	printf("test_multiply_matrices_neg: %s\n", cond ? "passed" : "failed");
-	free_matrix(&a);
-	free_matrix(&b);
-}
-
-void test_copy_swap(void)
-{
-	matrix_t a, b;
-	create_matrix(&a, 4, 2);
-	copy_matrix(&a, &b);
-	swap_rows(&a, 1, 3);
-	bool cond1 = b.data[1][0] == a.data[3][0] && b.data[1][1] == a.data[3][1];
-	bool cond2 = b.data[3][0] == a.data[1][0] && b.data[3][1] == a.data[1][1];
-	bool cond3 = b.data[2][0] == a.data[2][0] && b.data[2][1] == a.data[2][1];
-	bool cond4 = b.data[0][0] == a.data[0][0] && b.data[0][1] == a.data[0][1];
-	bool cond = cond1 && cond2 && cond3 && cond4;
-	printf("test_copy_swap: %s\n", cond ? "passed" : "failed");
-	free_matrix(&a);
-	free_matrix(&b);
 }
 
 void test_solve_matrix_pos(void)
@@ -144,8 +210,6 @@ int main(void)
 
 	test_multiply_matrices_pos();
 	test_multiply_matrices_neg();
-
-	test_copy_swap();
 
 	test_solve_matrix_pos();
 	test_solve_matrix_zeros();
