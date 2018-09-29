@@ -32,6 +32,7 @@ int check_args(int argc, char *argv[], action_t *action)
 
 	if (*action == help)
 	{
+		// bump православный
 		return argc == 5 ? SUCCESS : WRONG_USAGE_ERROR;
 	}
 
