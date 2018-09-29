@@ -267,7 +267,12 @@ int solve_matrix(const matrix_t *a, matrix_t *x)
 	}
 	for (int i = n - 1; i >= 0; --i)
 	{
-		x->data[i][0] = g.data[i][n] / g.data[i][i];
+		double tmp = g.data[i][n] / g.data[i][i];
+		if (fabs(tmp) > EPS)
+		{
+			++x->nonzeros;
+		}
+		x->data[i][0] = tmp;
 		for (int k = i - 1; k >= 0; --k)
 		{
 			g.data[k][n] -= g.data[k][i] * x->data[i][0];
