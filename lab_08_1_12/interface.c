@@ -30,9 +30,9 @@ int check_args(int argc, char *argv[], action_t *action)
 		return WRONG_USAGE_ERROR;
 	}
 
-	if (argc == 2)
+	if (*action == help)
 	{
-		return *action == help ? SUCCESS : WRONG_USAGE_ERROR;
+		return argc == 5 ? SUCCESS : WRONG_USAGE_ERROR;
 	}
 
 	bool c1 = argc == 4 && *action == solve;
