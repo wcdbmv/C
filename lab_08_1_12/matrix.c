@@ -292,7 +292,7 @@ void free_matrix(matrix_t *matrix)
 
 void write_matrix_2(FILE *file, const matrix_t *matrix)
 {
-	fprintf(file, "%lu %lu %lu\n", matrix->height, matrix->width, matrix->nonzeros);
+	fprintf(file, "%lu %lu %lu \n", matrix->height, matrix->width, matrix->nonzeros);
 
 	for (size_t i = 0; i != matrix->height; ++i)
 	{
@@ -301,7 +301,7 @@ void write_matrix_2(FILE *file, const matrix_t *matrix)
 			double tmp = matrix->data[i][j];
 			if (fabs(tmp) > EPS)
 			{
-				fprintf(file, "%lu %lu %lg\n", i + 1, j + 1, tmp);
+				fprintf(file, "%lu %lu %lg \n", i + 1, j + 1, tmp);
 			}
 		}
 	}
