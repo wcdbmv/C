@@ -301,7 +301,7 @@ void write_matrix_2(FILE *file, const matrix_t *matrix)
 			double tmp = matrix->data[i][j];
 			if (fabs(tmp) > EPS)
 			{
-				fprintf(file, "%lu %lu %lf\n", i, j, tmp);
+				fprintf(file, "%lu %lu %lf\n", i + 1, j + 1, tmp);
 			}
 		}
 	}
