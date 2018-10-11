@@ -33,6 +33,15 @@ size_t my_strlen(const char *str)
 	return s - str;
 }
 
+size_t my_strnlen(const char *str, size_t max_len)
+{
+	size_t len = 0;
+	for (; len < max_len; ++len, ++str)
+		if (!*str)
+			break;
+	return len;
+}
+
 char *my_strcpy(char *dst, const char *src)
 {
 	char *s = dst;
