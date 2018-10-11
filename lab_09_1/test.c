@@ -47,13 +47,13 @@ int main(void)
 
 bool test_my_strspn_simple(void)
 {
-	const char *str = "123th", *sym = "0123456789";
+	const char *str = "123th19", *sym = "0123456789";
 	return my_strspn(str, sym) == strspn(str, sym);
 }
 
 bool test_my_strspn_zero(void)
 {
-	const char *str = "alphavezzy", *sym = "0123456789";
+	const char *str = "alphavezzy10", *sym = "0123456789";
 	return my_strspn(str, sym) == strspn(str, sym);
 }
 

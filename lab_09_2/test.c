@@ -202,18 +202,13 @@ bool test_my_getline_simple(void)
 		return false;
 	}
 
-	char *l1 = NULL, *l2 = NULL;
-	size_t n1 = 0, n2 = 0;
-	bool rc = my_getline(&l1, &n1, file) >= 0;
+	char *l = NULL;
+	size_t n = 0;
+	bool rc = my_getline(&l, &n, file) >= 0;
 	if (rc)
 	{
-		rewind(file);
-		if ((rc = getline(&l2, &n2, file) >= 0))
-		{
-			rc = !my_strcmp(l1, l2);
-			free(l2);
-		}
-		free(l1);
+		rc = !my_strcmp(l, "I love it");
+		free(l);
 	}
 	fclose(file);
 	return rc;
@@ -228,18 +223,13 @@ bool test_my_getline_zero(void)
 		return false;
 	}
 
-	char *l1 = NULL, *l2 = NULL;
-	size_t n1 = 0, n2 = 0;
-	bool rc = my_getline(&l1, &n1, file) >= 0;
+	char *l = NULL;
+	size_t n = 0;
+	bool rc = my_getline(&l, &n, file) >= 0;
 	if (rc)
 	{
-		rewind(file);
-		if ((rc = getline(&l2, &n2, file) >= 0))
-		{
-			rc = !my_strcmp(l1, l2);
-			free(l2);
-		}
-		free(l1);
+		rc = !my_strcmp(l, "");
+		free(l);
 	}
 	fclose(file);
 	return rc;
@@ -254,11 +244,11 @@ bool test_my_getline_empty(void)
 		return false;
 	}
 
-	char *l1 = NULL;
-	size_t n1 = 0;
-	int rc = my_getline(&l1, &n1, file);
+	char *l = NULL;
+	size_t n = 0;
+	int rc = my_getline(&l, &n, file);
 	if (rc > 0)
-		free(l1);
+		free(l);
 	fclose(file);
 	return rc == EOF;
 }
