@@ -4,7 +4,7 @@
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
-	if (!lineptr)
+	if (!lineptr || !n || !stream)
 		return NULLPTR_ERROR;
 
 	static char buf[BUF_SIZE];
