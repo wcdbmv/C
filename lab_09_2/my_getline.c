@@ -1,6 +1,6 @@
 #include "my_getline.h"
 
-#define BUF_SIZE 128
+#define BUF_SIZE 256
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
