@@ -2,9 +2,6 @@
 
 int main(int argc, char *argv[])
 {
-	setbuf(stdout, NULL);
-	setbuf(stderr, NULL);
-
 	int rc;
 	if ((rc = check_args(argc, argv)) == SUCCESS)
 	{

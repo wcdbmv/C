@@ -89,32 +89,32 @@ int main(void)
 
 bool test_my_strcmp_less(void)
 {
-	const char *s1 = "Aleksander Mishin", *s2 = "Aleksander Petrov";
-	return my_strcmp(s1, s2) == strcmp(s1, s2);
+	const char *s1 = "Aleksander Mishkin", *s2 = "Aleksander Petrov";
+	return my_strcmp(s1, s2) < 0;
 }
 
 bool test_my_strcmp_equal(void)
 {
 	const char *s1 = "Ruslan Boshirov", *s2 = "Ruslan Boshirov";
-	return my_strcmp(s1, s2) == strcmp(s1, s2);
+	return !my_strcmp(s1, s2);
 }
 
 bool test_my_strcmp_more(void)
 {
 	const char *s1 = "Aleksander Petrov", *s2 = "Aleksander Mishkin";
-	return my_strcmp(s1, s2) == strcmp(s1, s2);
+	return my_strcmp(s1, s2) > 0;
 }
 
 bool test_my_strcmp_empty_s1(void)
 {
 	const char *s1 = "", *s2 = "Rulan Boshirov";
-	return my_strcmp(s1, s2) == strcmp(s1, s2);
+	return my_strcmp(s1, s2) < 0;
 }
 
 bool test_my_strcmp_empty_s2(void)
 {
 	const char *s1 = "Anatoliy Chepiga", *s2 = "";
-	return my_strcmp(s1, s2) == strcmp(s1, s2);
+	return my_strcmp(s1, s2) > 0;
 }
 
 bool test_my_strchr_simple(void)
@@ -207,7 +207,7 @@ bool test_my_getline_simple(void)
 	bool rc = my_getline(&l, &n, file) >= 0;
 	if (rc)
 	{
-		rc = !my_strcmp(l, "I love it");
+		rc = !my_strcmp(l, "I love it\n");
 		free(l);
 	}
 	fclose(file);
@@ -228,7 +228,7 @@ bool test_my_getline_zero(void)
 	bool rc = my_getline(&l, &n, file) >= 0;
 	if (rc)
 	{
-		rc = !my_strcmp(l, "");
+		rc = !my_strcmp(l, "\n");
 		free(l);
 	}
 	fclose(file);

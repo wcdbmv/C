@@ -35,16 +35,20 @@ int fstr_replace(FILE *in, FILE *out, const char *search, const char *replace)
 		return EMPTY_SEARCH_STRING_ERROR;
 	char *source = NULL;
 	size_t n = 0;
+	size_t lines = 0;
 	while ((rc = my_getline(&source, &n, in)) != EOF)
 	{
+		++lines;
 		char *destination = str_replace(source, search, replace);
 		if (!destination)
 			return FAILED_ALLOC_ERROR;
-		fprintf(out, "%s\n", destination);
+		fputs(destination, out);
 		free(destination);
 	}
 	if (source)
 		free(source);
+	if (!lines)
+		return EMPTY_INPUT_FILE_ERROR;
 
 	return SUCCESS;
 }

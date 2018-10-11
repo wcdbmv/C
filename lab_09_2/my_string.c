@@ -29,16 +29,14 @@ char *my_strchr(const char *str, const char sym)
 size_t my_strlen(const char *str)
 {
 	const char *s = str - 1;
-	while (*++s)
-		;
+	while (*++s);
 	return s - str;
 }
 
 char *my_strcpy(char *dst, const char *src)
 {
 	char *s = dst;
-	while ((*s++ = *src++))
-		;
+	while ((*s++ = *src++));
 	return dst;
 }
 
@@ -62,8 +60,7 @@ char *my_strstr(const char *str, const char *sub)
 	for (; *str; ++str)
 	{
 		const char *s, *u;
-		for (s = str, u = sub; *s && *u && (*s == *u); ++s, ++u)
-			;
+		for (s = str, u = sub; *s && *u && (*s == *u); ++s, ++u);
 		if (!*u)
 			return (char *) str;
 	}

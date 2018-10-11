@@ -22,7 +22,10 @@ void my_perror(int errcode)
 			perror("alloc");
 			break;
 		case EMPTY_SEARCH_STRING_ERROR:
-			fprintf(stderr, "Empty search string\n");
+			fprintf(stderr, "Search string is empty\n");
+			break;
+		case EMPTY_INPUT_FILE_ERROR:
+			fprintf(stderr, "Input file is empty\n");
 			break;
 	}
 }

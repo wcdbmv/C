@@ -4,14 +4,13 @@
 
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
+	if (!lineptr)
+		return NULLPTR_ERROR;
+
 	static char buf[BUF_SIZE];
 
 	if (!fgets(buf, BUF_SIZE, stream))
 		return feof(stream) ? EOF : READ_FILE_ERROR;
-
-	char *peol = my_strchr(buf, '\n');
-	if (peol)
-		*peol = '\0';
 
 	size_t buf_len = my_strlen(buf);
 
