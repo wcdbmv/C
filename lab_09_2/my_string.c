@@ -81,7 +81,7 @@ char *my_strncat(char *des, const char *src, size_t num)
 {
 	char *des_end = des + my_strlen(des);
 	while (*src && num--)
-		*des_end++ = *src;
+		*des_end++ = *src++;
 	*des_end = '\0';
 	return des;
 }

@@ -5,7 +5,7 @@
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
 	if (!lineptr || !n || !stream)
-		return NULLPTR_ERROR;
+		return -1;
 
 	char *buf = *lineptr;
 	size_t buf_len = *n;
@@ -14,7 +14,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 	{
 		buf_len = BUF_SIZE;
 		if (!(buf = malloc(buf_len)))
-			return FAILED_ALLOC_ERROR;
+			return -1;
 		*lineptr = buf;
 	}
 
@@ -22,17 +22,14 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 	{
 		if (feof(stream))
 		{
-			free(buf);
-			*lineptr = buf = NULL;
-			*n = 0;
-			return EOF;
+			*buf = '\0';
+			return -1;
 		}
 		else
 		{
 			free(buf);
 			*lineptr = buf = NULL;
-			*n = 0;
-			return READ_FILE_ERROR;
+			return -1;
 		}
 	}
 
@@ -44,8 +41,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 		{
 			free(buf);
 			*lineptr = buf = NULL;
-			*n = 0;
-			return FAILED_ALLOC_ERROR;
+			return -1;
 		}
 
 		if (!fgets(buf2, buf_len - 1, stream))
@@ -57,8 +53,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 			{
 				free(buf);
 				*lineptr = buf = NULL;
-				*n = 0;
-				return READ_FILE_ERROR;
+				return -1;
 			}
 		}
 
@@ -69,8 +64,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 			free(buf2);
 			free(buf);
 			*lineptr = buf = NULL;
-			*n = 0;
-			return FAILED_ALLOC_ERROR;
+			return -1;
 		}
 
 		buf = new_buf;

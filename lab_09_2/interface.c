@@ -36,7 +36,7 @@ int fstr_replace(FILE *in, FILE *out, const char *search, const char *replace)
 	char *source = NULL;
 	size_t n = 0;
 	size_t lines = 0;
-	while ((rc = my_getline(&source, &n, in)) != EOF)
+	while ((rc = my_getline(&source, &n, in)) != -1)
 	{
 		++lines;
 		char *destination = str_replace(source, search, replace);
@@ -50,7 +50,11 @@ int fstr_replace(FILE *in, FILE *out, const char *search, const char *replace)
 	if (!lines)
 		return EMPTY_INPUT_FILE_ERROR;
 
-	return SUCCESS;
+	if (feof(in))
+		return SUCCESS;
+	if (ferror(in))
+		return READ_FILE_ERROR;
+	return FAILED_ALLOC_ERROR;
 }
 
 void close_files(FILE *in, FILE *out)
