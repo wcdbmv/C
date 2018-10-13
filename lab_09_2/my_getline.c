@@ -1,5 +1,4 @@
 #include "my_getline.h"
-#include <string.h>
 
 #define BUF_SIZE 256
 
@@ -23,13 +22,16 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 	{
 		if (feof(stream))
 		{
-			*buf = '\0';
+			free(buf);
+			*lineptr = buf = NULL;
+			*n = 0;
 			return EOF;
 		}
 		else
 		{
 			free(buf);
 			*lineptr = buf = NULL;
+			*n = 0;
 			return READ_FILE_ERROR;
 		}
 	}
@@ -42,6 +44,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 		{
 			free(buf);
 			*lineptr = buf = NULL;
+			*n = 0;
 			return FAILED_ALLOC_ERROR;
 		}
 
@@ -54,6 +57,7 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 			{
 				free(buf);
 				*lineptr = buf = NULL;
+				*n = 0;
 				return READ_FILE_ERROR;
 			}
 		}
@@ -65,16 +69,17 @@ ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 			free(buf2);
 			free(buf);
 			*lineptr = buf = NULL;
+			*n = 0;
 			return FAILED_ALLOC_ERROR;
 		}
 
 		buf = new_buf;
-		strncat(buf, buf2, buf_len);
+		my_strncat(buf, buf2, buf_len);
 		free(buf2);
 	}
 
 	*lineptr = buf;
 	*n = buf_len;
 
-	return strlen(buf);
+	return my_strlen(buf);
 }
