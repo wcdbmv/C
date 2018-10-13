@@ -247,7 +247,7 @@ bool test_my_getline_empty(void)
 	char *l = NULL;
 	size_t n = 0;
 	int rc = my_getline(&l, &n, file);
-	if (rc > 0)
+	if (rc >= 0)
 		free(l);
 	fclose(file);
 	return rc == EOF;
