@@ -1,0 +1,14 @@
+#ifndef __ERRCODES_H__
+#define __ERRCODES_H__
+
+#define SUCCESS 0
+#define WRONG_USAGE_ERROR -1
+#define SAME_FILENAMES_ERROR -2
+#define CANT_OPEN_FILE -3
+#define READ_FILE_ERROR -4
+#define FAILED_ALLOC_ERROR -5
+#define EMPTY_SEARCH_STRING_ERROR -6
+#define NULLPTR_ERROR -7
+#define EMPTY_INPUT_FILE_ERROR -8
+
+#endif // __ERRCODES_H__
