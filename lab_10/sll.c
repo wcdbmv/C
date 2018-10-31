@@ -70,6 +70,9 @@ void insert(node_t **head, node_t *elem, node_t *before)
 		curr = curr->next;
 	}
 
+	if (curr != before)
+		return;
+
 	if (curr == *head)
 		*head = elem;
 	else

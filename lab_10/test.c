@@ -7,6 +7,7 @@ bool test_insert_simple(void);
 bool test_insert_first(void);
 bool test_insert_last(void);
 bool test_insert_void(void);
+bool test_insert_fake(void);
 bool test_insert_nullptr(void);
 bool test_reverse_simple(void);
 bool test_reverse_single(void);
@@ -31,6 +32,7 @@ bool (*tests[])(void) = {
 	test_insert_first,
 	test_insert_last,
 	test_insert_void,
+	test_insert_fake,
 	test_insert_nullptr,
 	test_reverse_simple,
 	test_reverse_single,
@@ -143,12 +145,30 @@ bool test_insert_last(void)
 
 bool test_insert_void(void)
 {
+	fprintf(stderr, "%s: ", __func__);
 	int data = 10;
 	node_t *head = NULL;
 	node_t *node = create_node(&data);
 	insert(&head, node, NULL);
 	bool res = head && *(int *) head->data == data && !head->next;
 	delete_node(&head, NULL);
+	return res;
+}
+
+bool test_insert_fake(void)
+{
+	fprintf(stderr, "%s: ", __func__);
+	int a[] = { 0, 1, 2, 3 };
+	int data = 4;
+	node_t *head = create_int_chain(a, sizeof a / sizeof a[0]);
+	node_t *node = create_node(&data);
+	insert(&head, node, node);
+	size_t len_head = len(head);
+	int *b = create_int_array(head, len_head);
+	bool res = len_head == 4 && b[0] == 0 && b[1] == 1 && b[2] == 2 && b[3] == 3;
+	delete_chain(&head, NULL);
+	delete_node(&node, NULL);
+	free(b);
 	return res;
 }
 
