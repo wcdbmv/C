@@ -6,6 +6,7 @@ bool test_pop_end_nullptr(void);
 bool test_insert_simple(void);
 bool test_insert_first(void);
 bool test_insert_last(void);
+bool test_insert_void(void);
 bool test_insert_nullptr(void);
 bool test_reverse_simple(void);
 bool test_reverse_single(void);
@@ -28,7 +29,8 @@ bool (*tests[])(void) = {
 	test_pop_end_nullptr,
 	test_insert_simple,
 	test_insert_first,
-	// test_insert_last,
+	test_insert_last,
+	test_insert_void,
 	test_insert_nullptr,
 	test_reverse_simple,
 	test_reverse_single,
@@ -136,6 +138,17 @@ bool test_insert_last(void)
 	bool res = b[0] == 0 && b[1] == 1 && b[2] == 2 && b[3] == 3 && b[4] == 4;
 	delete_chain(&head, NULL);
 	free(b);
+	return res;
+}
+
+bool test_insert_void(void)
+{
+	int data = 10;
+	node_t *head = NULL;
+	node_t *node = create_node(&data);
+	insert(&head, node, NULL);
+	bool res = head && *(int *) head->data == data && !head->next;
+	delete_node(&head, NULL);
 	return res;
 }
 

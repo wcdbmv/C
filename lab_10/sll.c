@@ -59,8 +59,7 @@ node_t *pop_end(node_t **head)
 
 void insert(node_t **head, node_t *elem, node_t *before)
 {
-	// (!(head && elem && (*head || !before)) || elem->next) // assert
-	if (!(head && elem && *head && before)) // assert
+	if (!(head && elem))
 		return;
 
 	node_t *prev = NULL, *curr = *head;
