@@ -37,7 +37,7 @@ void delete_node(node_t **node, delete_data_func_t delete_data_func)
 }
 
 
-node_t *pop_end(node_t **head)
+node_t *pop_back(node_t **head)
 {
 	if (!head || !*head)
 		return NULL;

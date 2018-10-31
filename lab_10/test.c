@@ -1,8 +1,8 @@
 #include "test_sll_ext.h"
 
-bool test_pop_end_simple(void);
-bool test_pop_end_single(void);
-bool test_pop_end_nullptr(void);
+bool test_pop_back_simple(void);
+bool test_pop_back_single(void);
+bool test_pop_back_nullptr(void);
 bool test_insert_simple(void);
 bool test_insert_first(void);
 bool test_insert_last(void);
@@ -25,9 +25,9 @@ bool test_sort_simple(void);
 bool test_sort_nullptr(void);
 
 bool (*tests[])(void) = {
-	test_pop_end_simple,
-	test_pop_end_single,
-	test_pop_end_nullptr,
+	test_pop_back_simple,
+	test_pop_back_single,
+	test_pop_back_nullptr,
 	test_insert_simple,
 	test_insert_first,
 	test_insert_last,
@@ -67,34 +67,34 @@ int main(void)
 	return passed != TESTS;
 }
 
-bool test_pop_end_simple(void)
+bool test_pop_back_simple(void)
 {
 	fprintf(stderr, "%s: ", __func__);
 	int a[] = { 0, 1, 2, 3, 4 };
 	node_t *head = create_int_chain(a, sizeof a / sizeof a[0]);
-	node_t *popped = pop_end(&head);
+	node_t *popped = pop_back(&head);
 	bool res = *(int *) popped->data == 4 && len(head) == 4;
 	delete_chain(&head, NULL);
 	delete_node(&popped, NULL);
 	return res;
 }
 
-bool test_pop_end_single(void)
+bool test_pop_back_single(void)
 {
 	fprintf(stderr, "%s: ", __func__);
 	int data = 10;
 	node_t *node = create_node(&data);
-	node_t *popped = pop_end(&node);
+	node_t *popped = pop_back(&node);
 	bool res = *(int *) popped->data == data && !node;
 	delete_node(&popped, NULL);
 	return res;
 }
 
-bool test_pop_end_nullptr(void)
+bool test_pop_back_nullptr(void)
 {
 	fprintf(stderr, "%s: ", __func__);
 	node_t *head = NULL;
-	return !pop_end(NULL) && !pop_end(&head);
+	return !pop_back(NULL) && !pop_back(&head);
 }
 
 bool test_insert_simple(void)

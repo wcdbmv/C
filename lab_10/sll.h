@@ -22,7 +22,7 @@ node_t *create_node(void *data);
 node_t *fget_node(fget_data_func_t fget_data_func, FILE *stream);
 void delete_node(node_t **node, delete_data_func_t delete_data_func);
 
-node_t *pop_end(node_t **head);
+node_t *pop_back(node_t **head);
 void insert(node_t **head, node_t *elem, node_t *before);
 node_t* reverse(node_t *head);
 void front_back_split(node_t* head, node_t** back);
