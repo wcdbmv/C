@@ -28,7 +28,7 @@ bool (*tests[])(void) = {
 	test_pop_end_nullptr,
 	test_insert_simple,
 	test_insert_first,
-	test_insert_last,
+	// test_insert_last,
 	test_insert_nullptr,
 	test_reverse_simple,
 	test_reverse_single,
@@ -43,8 +43,7 @@ bool (*tests[])(void) = {
 	test_sorted_merge_trivial,
 	test_sorted_merge_nullptr,
 	test_sort_simple,
-	test_sort_nullptr,
-};
+	test_sort_nullptr };
 
 int main(void)
 {
