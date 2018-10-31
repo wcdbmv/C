@@ -37,7 +37,7 @@ void delete_node(node_t **node, delete_data_func_t delete_data_func)
 }
 
 
-node_t *pop_back(node_t **head)
+void *pop_back(node_t **head)
 {
 	if (!head || !*head)
 		return NULL;
@@ -54,7 +54,11 @@ node_t *pop_back(node_t **head)
 	else
 		prev->next = NULL;
 
-	return curr;
+	void *data = curr->data;
+
+	delete_node(&curr, NULL);
+
+	return data;
 }
 
 void insert(node_t **head, node_t *elem, node_t *before)

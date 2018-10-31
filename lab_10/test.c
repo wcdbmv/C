@@ -72,10 +72,9 @@ bool test_pop_back_simple(void)
 	fprintf(stderr, "%s: ", __func__);
 	int a[] = { 0, 1, 2, 3, 4 };
 	node_t *head = create_int_chain(a, sizeof a / sizeof a[0]);
-	node_t *popped = pop_back(&head);
-	bool res = *(int *) popped->data == 4 && len(head) == 4;
+	int *popped = pop_back(&head);
+	bool res = *popped == 4 && len(head) == 4;
 	delete_chain(&head, NULL);
-	delete_node(&popped, NULL);
 	return res;
 }
 
@@ -84,9 +83,8 @@ bool test_pop_back_single(void)
 	fprintf(stderr, "%s: ", __func__);
 	int data = 10;
 	node_t *node = create_node(&data);
-	node_t *popped = pop_back(&node);
-	bool res = *(int *) popped->data == data && !node;
-	delete_node(&popped, NULL);
+	int *popped = pop_back(&node);
+	bool res = *popped == data && !node;
 	return res;
 }
 
