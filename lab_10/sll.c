@@ -102,7 +102,7 @@ void insert(node_t **head, node_t *elem, node_t *before)
 	elem->next = before;
 }
 
-node_t* reverse(node_t *head)
+node_t *reverse(node_t *head)
 {
 	if (!head)
 		return NULL;
@@ -156,7 +156,7 @@ void magnet(node_t **dest, node_t **src)
 	*dest = node;
 }
 
-node_t* sorted_merge(node_t **head_a, node_t **head_b, compare_t compare)
+node_t *sorted_merge(node_t **head_a, node_t **head_b, compare_t compare)
 {
 	if (!head_a || !head_b || !compare)
 		return NULL;
@@ -188,7 +188,7 @@ node_t* sorted_merge(node_t **head_a, node_t **head_b, compare_t compare)
 	return prehead.next;
 }
 
-node_t* sort(node_t *head, compare_t compare)
+node_t *sort(node_t *head, compare_t compare)
 {
 	if (!head || !compare)
 		return NULL;
@@ -229,7 +229,7 @@ node_t *max(node_t *head, int *i_max, compare_t compare)
 	while ((head = head->next))
 	{
 		++i;
-		if (compare(max_data, head->data) < 0) // ?
+		if (compare(max_data, head->data) < 0)
 		{
 			node = head;
 			max_data = node->data;

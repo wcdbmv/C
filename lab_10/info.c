@@ -7,7 +7,8 @@ void usage(void)
 
 void my_perror(int errcode)
 {
-	switch (errcode) {
+	switch (errcode)
+	{
 		case WRONG_USAGE_ERROR:
 			usage();
 			break;
