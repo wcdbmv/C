@@ -30,10 +30,28 @@ void delete_node(node_t **node, delete_data_func_t delete_data_func)
 	assert(node && *node);
 
 	if (delete_data_func && (*node)->data)
-		delete_data_func((*node)->data);
+		delete_data_func(&(*node)->data);
 
 	free(*node);
 	*node = NULL;
+}
+
+void delete_chain(node_t **head, delete_data_func_t delete_data_func)
+{
+	assert(head && *head);
+
+	while (*head)
+	{
+		node_t *node = *head;
+		*head = (*head)->next;
+		delete_node(&node, delete_data_func);
+	}
+}
+
+void simple_free(void **data)
+{
+	free(*data);
+	*data = NULL;
 }
 
 
@@ -185,4 +203,38 @@ node_t* sort(node_t *head, compare_t compare)
 	back = sort(back, compare);
 
 	return sorted_merge(&head, &back, compare);
+}
+
+
+size_t len(node_t *head)
+{
+	size_t res = 0;
+	while (head)
+	{
+		head = head->next;
+		++res;
+	}
+	return res;
+}
+
+node_t *max(node_t *head, int *i_max, compare_t compare)
+{
+	if (!head)
+		return NULL;
+
+	node_t *node = head;
+	void *max_data = node->data;
+	int i = 0;
+	*i_max = i;
+	while ((head = head->next))
+	{
+		++i;
+		if (compare(max_data, head->data) < 0) // ?
+		{
+			node = head;
+			max_data = node->data;
+			*i_max = i;
+		}
+	}
+	return node;
 }

@@ -1,14 +1,15 @@
-#include "test_sll_ext.h"
+#include "int_sll_ext.h"
 
-size_t len(node_t *head)
+void *fget_int_data(FILE *stream)
 {
-	size_t res = 0;
-	while (head)
+	int *data = (int *) malloc(sizeof (int));
+	if (fscanf(stream, "%d", data) != 1)
 	{
-		head = head->next;
-		++res;
+		free(data);
+		return NULL;
 	}
-	return res;
+
+	return data;
 }
 
 node_t *create_int_chain(int *a, size_t n)
@@ -48,18 +49,7 @@ int *create_int_array(node_t *head, size_t n)
 	return a;
 }
 
-void delete_chain(node_t **head, delete_data_func_t delete_data_func)
-{
-	assert(head && *head);
-
-	while (*head)
-	{
-		node_t *node = *head;
-		*head = (*head)->next;
-		delete_node(&node, delete_data_func);
-	}
-}
-
+// debug
 void print_int_chain(node_t *head)
 {
 	while (head)

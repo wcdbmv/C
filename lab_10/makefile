@@ -1,7 +1,6 @@
 CFLAGS = -std=c99 -Wall -Werror -pedantic
-COMMON_OBJS = sll.o
-APP_OBJS = country.o
-TEST_OBJS = test_sll_ext.o
+COMMON_OBJS = sll.o int_sll_ext.o
+APP_OBJS = info.o interface.o
 
 .PHONY: clean
 
@@ -11,10 +10,10 @@ else ifeq ($(mode), release)
 	CFLAGS += -g0 -DNDEBUG
 endif
 
-#app.exe: $(COMMON_OBJS) $(APP_OBJS) main.o
-#	gcc -o $@ $^
+app.exe: $(COMMON_OBJS) $(APP_OBJS) main.o
+	gcc -o $@ $^
 
-test.exe: $(COMMON_OBJS) $(TEST_OBJS) test.o
+test.exe: $(COMMON_OBJS) test.o
 	gcc -o $@ $^
 
 %.o: %.c %.h
