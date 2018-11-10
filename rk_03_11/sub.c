@@ -58,7 +58,7 @@ int sub(int *a, size_t n, int *b, size_t m, int **c, size_t *k)
 	if (zeros)
 	{
 		int *buf = (int *) malloc(*k * sizeof (int));
-		memcpy(buf, *c + zeros, n - zeros);
+		memcpy(buf, *c + zeros, *k * sizeof (int));
 		free(*c);
 		*c = buf;
 	}
