@@ -5,6 +5,8 @@
 #include <string.h> // memcpy
 #include "errcodes.h"
 
+#include <stdio.h>
+
 int sub(int *a, size_t n, int *b, size_t m, int **c, size_t *k)
 {
 	if (n < m)
@@ -41,11 +43,18 @@ int sub(int *a, size_t n, int *b, size_t m, int **c, size_t *k)
 
 	int zeros = 0;
 	for (; zeros != n; ++zeros)
-		if (c[zeros])
+		if ((*c)[zeros])
 			break;
 
 
 	*k = n - zeros;
+	if (!*k)
+	{
+		*k = 1;
+		*c = realloc(*c, sizeof (int));
+		return SUCCESS;
+	}
+
 	if (zeros)
 	{
 		int *buf = (int *) malloc(*k * sizeof (int));
