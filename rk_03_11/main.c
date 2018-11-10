@@ -1,6 +1,7 @@
 #include "io.h"
 #include "sub.h"
 #include "errcodes.h"
+#include "info.h"
 
 int main(void)
 {
@@ -24,6 +25,8 @@ free_a_b_c:
 free_a_b:
 	free(b);
 	free(a);
+
+	my_perror(rc);
 
 	return rc;
 }
