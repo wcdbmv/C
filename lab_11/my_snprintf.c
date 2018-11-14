@@ -25,8 +25,6 @@ void putnnum(const void *pnum, char **curr, size_t size, size_t *n, int base)
 	putnstring(str, curr, size, n);
 }
 
-#include <stdio.h>
-
 int my_snprintf(char *str, size_t size, const char *format, ...)
 {
 	// If str is NULL, snprintf falls with SIGSEGV.
@@ -48,6 +46,7 @@ int my_snprintf(char *str, size_t size, const char *format, ...)
 	while ((c = *format++))
 	{
 		if (focus)
+		{
 			switch (c)
 			{
 				case 'h':
@@ -82,6 +81,7 @@ int my_snprintf(char *str, size_t size, const char *format, ...)
 					putnchar(c, &str, size, &n);
 					break;
 			}
+		}
 		else if (c != '%')
 		{
 			putnchar(c, &str, size, &n);

@@ -7,14 +7,14 @@
 
 typedef uint8_t U;
 
-bool test_my_snprintf_noeffect_simple(void);
-bool test_my_snprintf_noeffect_overflow(void);
+bool test_my_snprintf_simple(void);
+bool test_my_snprintf_overflow(void);
 bool test_my_snprintf_all_together(void);
 bool test_my_snprintf_nullptr(void);
 
 bool (*tests[])(void) = {
-	test_my_snprintf_noeffect_simple,
-	test_my_snprintf_noeffect_overflow,
+	test_my_snprintf_simple,
+	test_my_snprintf_overflow,
 	test_my_snprintf_all_together,
 	test_my_snprintf_nullptr };
 
@@ -55,7 +55,7 @@ inline bool print_passed(const U passed, const U total)
 
 //———————————————————————————————————————————————————————————————————————— test
 
-bool test_my_snprintf_noeffect_simple(void)
+bool test_my_snprintf_simple(void)
 {
 	print_header(__func__);
 
@@ -71,7 +71,7 @@ bool test_my_snprintf_noeffect_simple(void)
 	return print_result(res);
 }
 
-bool test_my_snprintf_noeffect_overflow(void)
+bool test_my_snprintf_overflow(void)
 {
 	print_header(__func__);
 
