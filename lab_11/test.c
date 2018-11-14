@@ -23,13 +23,13 @@ extern inline bool print_passed(const u_t passed, const u_t total);
 
 int main(void)
 {
-	const u_t TESTS = sizeof tests / sizeof tests[0];
+	const u_t ntests = sizeof tests / sizeof tests[0];
 	u_t passed = 0;
 
-	for (u_t i = 0; i != TESTS; ++i)
+	for (u_t i = 0; i != ntests; ++i)
 		passed += tests[i]();
 
-	return print_passed(passed, TESTS);
+	return print_passed(passed, ntests);
 }
 
 //——————————————————————————————————————————————————————————————————————— print
