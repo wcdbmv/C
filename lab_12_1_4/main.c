@@ -11,13 +11,13 @@
 #include "interface.h"
 #include "errcodes.h"
 
-#define shotdown(var, label) \
+#define shutdown(var, label) \
 { \
 	rc = var; \
 	goto label; \
 }
 
-#define shotdown_c(command, var, label) \
+#define shutdown_c(command, var, label) \
 { \
 	command; \
 	rc = var; \
@@ -41,25 +41,25 @@ int main(int argc, char *argv[])
 	const char *output_filename = argv[2];
 
 	if (!strcmp(input_filename, output_filename))
-		shotdown(SAME_FILENAMES, fin)
+		shutdown(SAME_FILENAMES, fin)
 
 	FILE *input_file = fopen(input_filename, "r");
 	if (!input_file)
-		shotdown_c(perror(input_filename), CANT_OPEN_INPUT_FILE, fin)
+		shutdown_c(perror(input_filename), CANT_OPEN_INPUT_FILE, fin)
 
 	FILE *output_file = fopen(output_filename, "w");
 	if (!output_file)
-		shotdown_c(perror(output_filename), CANT_OPEN_OUTPUT_FILE, close_input)
+		shutdown_c(perror(output_filename), CANT_OPEN_OUTPUT_FILE, close_input)
 
 	int size = count_array_size(input_file);
 	if (size <= 0)
-		shotdown(size, close_output)
+		shutdown(size, close_output)
 	rewind(input_file);
 
 	int *pb = NULL, *pe = NULL;
 	rc = get_array(input_file, &pb, &pe, size);
 	if (rc == FAILED_MALLOC)
-		shotdown_c(perror("malloc"), rc, close_output)
+		shutdown_c(perror("malloc"), rc, close_output)
 
 	if (filter)
 	{
@@ -67,10 +67,10 @@ int main(int argc, char *argv[])
 		double average;
 		size = kpp(old_pb, old_pe, &average);
 		if (!size)
-			shotdown_c(free(old_pb), EMPTY_FILTERED_ARRAY, close_output)
+			shutdown_c(free(old_pb), EMPTY_FILTERED_ARRAY, close_output)
 		pb = malloc(size * sizeof (int));
 		if (!pb)
-			shotdown_c(free(old_pb), FAILED_MALLOC, close_output)
+			shutdown_c(free(old_pb), FAILED_MALLOC, close_output)
 		pe = pb + size;
 		key(old_pb, old_pe, pb, pe, average);
 		free(old_pb);
