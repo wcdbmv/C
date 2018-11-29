@@ -10,9 +10,8 @@ app_d.exe: interface.o main.o libarr.so
 app_dd.exe: interface.o main_d.o libarr.so
 	$(CC) -o $@ interface.o main_d.o -ldl
 
-
-test.exe: test.o
-	$(CC) -o $@ $^
+test.exe: test.o libarr.a
+	$(CC) -o $@ $^ -L. -larr
 
 libarr.a: arr_lib.o
 	ar rc $@ $<
