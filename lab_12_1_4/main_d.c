@@ -16,7 +16,7 @@ typedef int (*fn_cmp_t)(const void *, const void *);
 
 #define load(var, sym) \
 { \
-	var = dlsym(handle, sym); \
+	*(void **) (&var) = dlsym(handle, sym); \
 	if (dlerror()) \
 	{ \
 		fputs (dlerror(), stderr); \

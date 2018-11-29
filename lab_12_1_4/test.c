@@ -106,7 +106,7 @@ bool test_key_simple(void)
 
 bool test_key_empty_output(void)
 {
-	int old_pb[5] = { };
+	int old_pb[] = { 0, 0, 0, 0, 0 };
 	int *old_pe = old_pb + 5;
 
 	double average;
