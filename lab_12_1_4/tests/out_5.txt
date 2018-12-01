@@ -1,0 +1,2 @@
+-f: stderr: Input file is empty
++f: stderr: Input file is empty
