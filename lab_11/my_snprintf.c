@@ -90,6 +90,9 @@ int my_snprintf(char *str, size_t size, const char *format, ...)
 		focus = !focus;
 	}
 
+	if (focus)
+		putnchar('%', &str, size, &n);
+
 	if (size)
 		*str = '\0';
 

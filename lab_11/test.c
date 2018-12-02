@@ -81,7 +81,7 @@ bool test_my_snprintf_all_together(void)
 {
 	size_t n = 20;
 	char s1[n], s2[n];
-	const char *format = "hx%hx%%%s%i%__i";
+	const char *format = "hx%hx%%%s%i%__i%";
 	short unsigned hx = 15;
 	char *s = " ";
 	int i = 0;
