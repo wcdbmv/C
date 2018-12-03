@@ -98,6 +98,7 @@ bool test_my_snprintf_all_together(void)
 bool test_my_snprintf_nullptr(void)
 {
 	bool res = my_snprintf(NULL, 0, NULL) == MY_SNPRINTF_ERROR;
+	res &= my_snprintf(NULL, 0, "\n") == snprintf(NULL, 0, "\n");
 
 	return print_result(__func__, res);
 }

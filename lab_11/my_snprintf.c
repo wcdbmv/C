@@ -28,7 +28,7 @@ void putnnum(const void *pnum, char **curr, size_t size, size_t *n, int base)
 int my_snprintf(char *str, size_t size, const char *format, ...)
 {
 	// If str is NULL, snprintf falls with SIGSEGV.
-	if (!str || !format)
+	if ((!str && size) || !format)
 		return MY_SNPRINTF_ERROR;
 
 	// If size is 0, snprintf returns success.
