@@ -81,7 +81,7 @@ bool test_my_snprintf_all_together(void)
 {
 	size_t n = 20;
 	char s1[n], s2[n];
-	const char *format = "hx%hx%%%s%i%__i";
+	const char *format = "hx%hx%%%s%i%__i%";
 	short unsigned hx = 15;
 	char *s = " ";
 	int i = 0;
@@ -98,6 +98,7 @@ bool test_my_snprintf_all_together(void)
 bool test_my_snprintf_nullptr(void)
 {
 	bool res = my_snprintf(NULL, 0, NULL) == MY_SNPRINTF_ERROR;
+	res &= my_snprintf(NULL, 0, "\n") == snprintf(NULL, 0, "\n");
 
 	return print_result(__func__, res);
 }
