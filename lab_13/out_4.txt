@@ -1,0 +1,77 @@
+1. Load movies from file
+2. Save movies in file
+3. Show movies sorted by title
+4. Show movies sorted by year
+5. Show movies sorted by director
+6. Show movies in 20 century
+7. Show W. Allen's movies
+8. Add movie
+9. Remove movie
+0. Exit
+
+Input command: 
+Input filename: [0m[32mSuccessful
+
+[0m1. Load movies from file
+2. Save movies in file
+3. Show movies sorted by title
+4. Show movies sorted by year
+5. Show movies sorted by director
+6. Show movies in 20 century
+7. Show W. Allen's movies
+8. Add movie
+9. Remove movie
+0. Exit
+
+Input command: 
+Input filename: [0m[32mSuccessful
+
+[0m1. Load movies from file
+2. Save movies in file
+3. Show movies sorted by title
+4. Show movies sorted by year
+5. Show movies sorted by director
+6. Show movies in 20 century
+7. Show W. Allen's movies
+8. Add movie
+9. Remove movie
+0. Exit
+
+Input command: 
+Input filename: [0m[32mSuccessful
+
+[0m1. Load movies from file
+2. Save movies in file
+3. Show movies sorted by title
+4. Show movies sorted by year
+5. Show movies sorted by director
+6. Show movies in 20 century
+7. Show W. Allen's movies
+8. Add movie
+9. Remove movie
+0. Exit
+
+Input command: 
+
+Almost Famous; 2000; C. Crowe
+American History X; 1998; T. Kaye
+Bananas; 1971; W. Allen
+Husbands and Wives; 1992; W. Allen
+Knockin’ on Heaven’s Door; 1997; G. Carroll
+Love and Death; 1975; W. Allen
+Pulp Fiction; 1994; Q. Tarantino
+Shutter Island; 2010; M. Scorsese
+Whiplash; 2014; D. Chazelle
+
+1. Load movies from file
+2. Save movies in file
+3. Show movies sorted by title
+4. Show movies sorted by year
+5. Show movies sorted by director
+6. Show movies in 20 century
+7. Show W. Allen's movies
+8. Add movie
+9. Remove movie
+0. Exit
+
+Input command: 
