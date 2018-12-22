@@ -17,7 +17,7 @@ int year_cmp(struct movie *a, struct movie *b)
 
 int director_cmp(struct movie *a, struct movie *b)
 {
-	return strcmp(a->director, b->title);
+	return strcmp(a->director, b->director);
 }
 
 void push_filtered(struct movie *movie, struct base *base, size_t i)

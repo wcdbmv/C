@@ -9,7 +9,7 @@
 9. Remove movie
 0. Exit
 
-Input command: 
+Input command:
 Input filename: [0m[32mSuccessful
 
 [0m1. Load movies from file
@@ -23,7 +23,7 @@ Input filename: [0m[32mSuccessful
 9. Remove movie
 0. Exit
 
-Input command: 
+Input command:
 
 Almost Famous; 2000; C. Crowe
 American History X; 1998; T. Kaye
@@ -46,7 +46,7 @@ Whiplash; 2014; D. Chazelle
 9. Remove movie
 0. Exit
 
-Input command: 
+Input command:
 
 Whiplash; 2014; D. Chazelle
 Shutter Island; 2010; M. Scorsese
@@ -69,17 +69,17 @@ Bananas; 1971; W. Allen
 9. Remove movie
 0. Exit
 
-Input command: 
+Input command:
 
 Almost Famous; 2000; C. Crowe
+Whiplash; 2014; D. Chazelle
 Knockin’ on Heaven’s Door; 1997; G. Carroll
-Pulp Fiction; 1994; Q. Tarantino
 Shutter Island; 2010; M. Scorsese
+Pulp Fiction; 1994; Q. Tarantino
 American History X; 1998; T. Kaye
+Husbands and Wives; 1992; W. Allen
 Bananas; 1971; W. Allen
 Love and Death; 1975; W. Allen
-Whiplash; 2014; D. Chazelle
-Husbands and Wives; 1992; W. Allen
 
 1. Load movies from file
 2. Save movies in file
@@ -92,4 +92,4 @@ Husbands and Wives; 1992; W. Allen
 9. Remove movie
 0. Exit
 
-Input command: 
+Input command:
